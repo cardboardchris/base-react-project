@@ -1,0 +1,32 @@
+{
+  "name": "psc105-hot-topic-1",
+  "version": "1.0.0",
+  "description": "PSC105 Unit 1 Hot Topic learning object",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://cmmetivi@bitbucket.org/uncgonline/psc105-hot-topic-1.git"
+  },
+  "author": "Chris Metivier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/uncgonline/psc105-hot-topic-1/issues"
+  },
+  "homepage": "https://bitbucket.org/uncgonline/psc105-hot-topic-1#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.5",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.39.0",
+    "webpack-cli": "^4.7.2"
+  }
+}
