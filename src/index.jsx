@@ -11,7 +11,7 @@ const App = () => (
     <h1>React.js</h1>
     <h3>This app has been set up from scratch!</h3>
   </>
-);
+)
 
 const rootComponent = App();
 // instruct ReactDom to render or React App in the specified HTML element
