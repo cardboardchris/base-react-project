@@ -5,15 +5,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
 
 const config = {
   entry: path.resolve(__dirname, './src/index.jsx'),
   output: {
     // outputs the bundled file to the dist directory
     path: path.resolve(__dirname, 'dist'),
-    // set filename to include a hash for cache-busting
-    filename: 'bundle.[fullhash].js',
+    // set chunks' filenames to include a hash for cache-busting
+    chunkFilename: '[name].[fullhash].js',
     // define publicPath to prevent plugins from appending extra directory names
     publicPath: ''
   },
@@ -81,6 +81,17 @@ const config = {
         type: 'javascript/auto'
       },
     ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/, ///< put all used node_modules modules in this chunk
+          name: "vendor", ///< name of bundle
+          chunks: "all" ///< type of code to put in this bundle
+        }
+      }
+    }
   }
 }
 
@@ -94,10 +105,16 @@ if (currentTask === 'build') {
         { src: path.resolve('./src/assets/favicon/icon-192.png'), sizes: '192x192' },
         { src: path.resolve('./src/assets/favicon/icon-512.png'), sizes: '512x512' }
       ]
-    }),
-    new BundleAnalyzerPlugin()
+    })
+    // new BundleAnalyzerPlugin()
   )
 }
+
+// // when watching, create a source map
+// if (currentTask === 'start') {
+//   config.plugins.push(new BundleAnalyzerPlugin()
+//   )
+// }
 
 module.exports = config
 
