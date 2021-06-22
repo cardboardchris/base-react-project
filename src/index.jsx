@@ -1,6 +1,6 @@
 import './styles/style.scss';
-// import * as React from 'react';
-import React, { lazy } from 'react';
+import * as React from 'react';
+// import React, { lazy } from 'react';
 import ReactDOM from 'react-dom';
 
 // this is the HTML element in which we want React to render

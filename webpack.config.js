@@ -5,7 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer');
 
 const config = {
   entry: path.resolve(__dirname, './src/index.jsx'),
@@ -18,8 +17,6 @@ const config = {
     publicPath: ''
   },
   mode: 'development',
-  // use build-in devtool to create source maps for development
-  devtool: 'eval-cheap-source-map',
   // config for Webpack's built-in development server
   devServer: {
     port: 8080,
@@ -65,7 +62,7 @@ const config = {
         test: /\.(js|jsx)$/,
         // exclude the node_modules directory
         exclude: /(node_modules)/,
-        use: ['babel-loader']
+        use: 'babel-loader'
       },
       // handle asset files
       {
@@ -86,9 +83,9 @@ const config = {
     splitChunks: {
       cacheGroups: {
         vendors: {
-          test: /[\\/]node_modules[\\/]/, ///< put all used node_modules modules in this chunk
-          name: "vendor", ///< name of bundle
-          chunks: "all" ///< type of code to put in this bundle
+          test: /[\\/]node_modules[\\/]/, // put all used node_modules modules in this chunk
+          name: "vendor", // name of bundle
+          chunks: "all" // type of code to put in this bundle
         }
       }
     }
@@ -105,16 +102,9 @@ if (currentTask === 'build') {
         { src: path.resolve('./src/assets/favicon/icon-192.png'), sizes: '192x192' },
         { src: path.resolve('./src/assets/favicon/icon-512.png'), sizes: '512x512' }
       ]
-    })
-    // new BundleAnalyzerPlugin()
+    }),
   )
 }
-
-// // when watching, create a source map
-// if (currentTask === 'start') {
-//   config.plugins.push(new BundleAnalyzerPlugin()
-//   )
-// }
 
 module.exports = config
 
