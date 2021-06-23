@@ -1,10 +1,9 @@
-import './styles/style.scss';
-import * as React from 'react';
-// import React, { lazy } from 'react';
-import ReactDOM from 'react-dom';
+import './styles/style.scss'
+import * as React from 'react'
+import ReactDOM from 'react-dom'
 
 // this is the HTML element in which we want React to render
-const reactDomContainer = document.getElementById('app');
+const reactDomContainer = document.getElementById('app')
 
 // Babel will transpile this into ES5 syntax
 const App = () => (

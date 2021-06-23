@@ -35,7 +35,7 @@ const config = {
     // html-webpack-plugin for using src/index.html as a template for the final html file
     // this also automatically inserts links to hashed css and js files in the built index.html
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/template.html',
       // favicon: './src/assets/favicon/favicon.ico'
     }),
     new ESLintPlugin({
@@ -49,6 +49,10 @@ const config = {
       ]
     })
   ],
+  // allow webpack to recognize jsx files
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   // rules for each file type to be processed
   module: {
     rules: [
@@ -79,6 +83,7 @@ const config = {
       },
     ]
   },
+  // split the output into two bundles, one for dependent node modules, and one for the app itself
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -97,13 +102,16 @@ if (currentTask === 'build') {
   config.mode = 'production'
   config.plugins.push(
     new WebpackPwaManifest({
-      name: 'React App',
+      name: 'React Base Project',
       icons: [
         { src: path.resolve('./src/assets/favicon/icon-192.png'), sizes: '192x192' },
         { src: path.resolve('./src/assets/favicon/icon-512.png'), sizes: '512x512' }
       ]
     }),
   )
+} else {
+  // when watching, create a source map
+  config.devtool = 'eval-cheap-source-map'
 }
 
 module.exports = config
