@@ -9,7 +9,7 @@ const reactDomContainer = document.getElementById('app')
 const App = () => (
   <>
     <h1>React.js</h1>
-    <h3>This app has been set up from scratch!</h3>
+    <h2>This app has been set up from scratch!</h2>
   </>
 )
 
