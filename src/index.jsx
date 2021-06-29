@@ -1,7 +1,6 @@
 import './styles/style.scss'
 import * as React from 'react'
 import ReactDOM from 'react-dom'
-import Game from './components/Game'
 
 // this is the HTML element in which we want React to render
 const reactDomContainer = document.getElementById('app')
@@ -10,8 +9,7 @@ const reactDomContainer = document.getElementById('app')
 const App = () => (
   <>
     <h1>React.js</h1>
-    <h3>This app has been set up from scratch!</h3>
-    <Game />
+    <h2>This app has been set up from scratch!</h2>
   </>
 )
 
