@@ -11,6 +11,7 @@ const App = () => (
   <>
     <h1>React.js</h1>
     <h2>This app has been set up from scratch!</h2>
+    <h3>Tic-Tac-Toe Tutorial</h3>
     <Game />
   </>
 )
