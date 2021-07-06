@@ -5,12 +5,12 @@ import Square from './Square'
 
 export default class Board extends React.Component {
 
-  renderSquare(i) {
+  renderSquare (i) {
     const { squares, onClick } = this.props
     return (
       <Square
         value={ squares[i] }
-        onClick={ onClick }
+        onClick={ () => onClick(i) }
       />
     )
   }
@@ -40,5 +40,5 @@ export default class Board extends React.Component {
 
 Board.propTypes = {
   squares: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 }

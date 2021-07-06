@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { nanoid } from 'nanoid';
 import Board from './Board'
 
 export default class Game extends React.Component {
@@ -6,7 +7,7 @@ export default class Game extends React.Component {
     super(props)
     this.state = {
       history: [{
-        squares: Array(9).fill(null)
+        squares: Array(9).fill(null),
       }],
       xIsNext: true,
       stepNumber: 0,
@@ -14,11 +15,12 @@ export default class Game extends React.Component {
   }
 
   handleClick = (i) => {
-    console.log(i)
     const { history, xIsNext, stepNumber } = this.state
     const newHistory = history.slice(0, stepNumber + 1)
     const current = newHistory[newHistory.length - 1]
     const squares = current.squares.slice()
+    const newSquares = squares.slice();
+    newSquares[i] = xIsNext ? 'X' : 'O';
     if (this.calculateWinner(squares) || squares[i]) {
       return
     }
@@ -28,7 +30,7 @@ export default class Game extends React.Component {
         squares
       }]),
       xIsNext: !xIsNext,
-      stepNumber: history.length,
+      stepNumber: newHistory.length,
     })
   }
 
@@ -60,15 +62,15 @@ export default class Game extends React.Component {
   }
 
   render () {
-    const { history, xIsNext } = this.state
-    const current = history[history.length - 1]
+    const { history, xIsNext, stepNumber } = this.state
+    const current = history[stepNumber]
     const winner = this.calculateWinner(current.squares)
-    // console.log(history)
 
     const moves = history.map((step, move) => {
       const desc = move ? `Go to move ${ move }` : 'Go to game start'
+      const id = nanoid()
       return (
-        <li key={ step }>
+        <li key={ id }>
           <button
             type="button"
             onClick={ () => this.jumpTo(move) }
@@ -90,6 +92,7 @@ export default class Game extends React.Component {
       <div className="game">
         <div className="game-board">
           <Board
+            xIsNext={ xIsNext }
             squares={ current.squares }
             onClick={ (i) => this.handleClick(i) }
           />
