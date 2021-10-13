@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://cmmetivi@bitbucket.org/uncgonline/psc105-hot-topic-1.git"
+    "url": "git+https://github.com/cardboardchris/base-react-project"
   },
   "author": "Chris Metivier",
   "license": "ISC",
